@@ -31,7 +31,6 @@
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="ocr" />
-
     </application>
 
 </manifest>

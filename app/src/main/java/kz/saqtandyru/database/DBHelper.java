@@ -48,15 +48,6 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String INSURANCE_DATE_FROM = "date_from";
     private static final String INSURANCE_DATE_TO = "date_to";
 
-    private static final String CAR_SERVICE_TABLE = "service";
-    private static final String CAR_SERVICE_ID = "service_id";
-    private static final String CAR_SERVICE_CAR_ID = "car_id";
-    private static final String CAR_SERVICE_CAR_NAME = "car";
-    private static final String CAR_SERVICE_REG_NR = "reg_nr";
-    private static final String CAR_SERVICE_MILEAGE = "mileage";
-    private static final String CAR_SERVICE_DATE_FROM = "date_from";
-    private static final String CAR_SERVICE_DATE_TO = "date_to";
-
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -99,17 +90,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 INSURANCE_DATE_TO + " TEXT NOT NULL, " +
                 "FOREIGN KEY (" + INSURANCE_CAR_ID + ") REFERENCES " + CARS_TABLE_NAME + "(" + CARS_COLUMN_ID + "));"
         );
-
-        db.execSQL("CREATE TABLE " + CAR_SERVICE_TABLE + " (" +
-                CAR_SERVICE_ID + " integer primary key autoincrement, " +
-                CAR_SERVICE_CAR_ID + " integer, " +
-                CAR_SERVICE_CAR_NAME + " TEXT NOT NULL, " +
-                CAR_SERVICE_REG_NR + " TEXT NOT NULL, " +
-                CAR_SERVICE_MILEAGE + " TEXT NOT NULL, " +
-                CAR_SERVICE_DATE_FROM + " TEXT NOT NULL, " +
-                CAR_SERVICE_DATE_TO + " TEXT NOT NULL, " +
-                "FOREIGN KEY (" + CAR_SERVICE_CAR_ID + ") REFERENCES " + CARS_TABLE_NAME + "(" + CARS_COLUMN_ID + "));"
-        );
     }
 
     @Override
@@ -118,7 +98,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + PARTS_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + CAR_PHOTO_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + INSURANCE_TABLE);
-        db.execSQL("DROP TABLE IF EXISTS " + CAR_SERVICE_TABLE);
         onCreate(db);
     }
 
@@ -155,7 +134,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
-
             Car mainCar = new Car(
                     cursor.getString(cursor.getColumnIndex("marka")),
                     cursor.getString(cursor.getColumnIndex("model")),
@@ -165,13 +143,10 @@ public class DBHelper extends SQLiteOpenHelper {
                     cursor.getInt(cursor.getColumnIndex("ikona")),
                     cursor.getInt(cursor.getColumnIndex("glowne"))
             );
-
             cursor.close();
-
             return mainCar;
         }
         db.close();
-
         return null;
     }
 
@@ -193,10 +168,8 @@ public class DBHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
             int isMain = cursor.getInt(cursor.getColumnIndex("glowne"));
             cursor.close();
-
             return isMain == 1;
         }
-
         return false;
     }
 
@@ -266,9 +239,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public Car getCar(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from cars where id=?", new String[]{String.valueOf(id)});
-
         if (cursor != null) {
-
             cursor.moveToFirst();
             return new Car(
                     cursor.getString(cursor.getColumnIndex("marka")),
@@ -280,17 +251,14 @@ public class DBHelper extends SQLiteOpenHelper {
                     cursor.getInt(cursor.getColumnIndex("glowne"))
             );
         }
-
         db.close();
         return null;
     }
 
     public ArrayList<Car> getAllCars() {
         ArrayList<Car> array_list = new ArrayList<>();
-
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from cars", null);
-
         if (cursor.moveToFirst()) {
             do {
                 array_list.add(new Car(
@@ -392,73 +360,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void insertCarService(int car_id, Document service) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("car_id", car_id);
-        contentValues.put("car", service.getAuto());
-        contentValues.put("reg_nr", service.getInfo());
-        contentValues.put("mileage", service.getAdditionalInfo());
-        contentValues.put("date_from", service.getDate());
-        contentValues.put("date_to", service.getExpiryDate());
-        db.insert(CAR_SERVICE_TABLE, null, contentValues);
-        db.close();
-    }
-
-    public Document getCarService(int car_id) {
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from service where service.service_id=?", new String[]{String.valueOf(car_id)});
-
-        if (cursor != null) {
-
-            cursor.moveToFirst();
-            return new Document(
-                    cursor.getString(cursor.getColumnIndex("car")),
-                    cursor.getString(cursor.getColumnIndex("reg_nr")),
-                    cursor.getString(cursor.getColumnIndex("mileage")),
-                    cursor.getString(cursor.getColumnIndex("date_from")),
-                    cursor.getString(cursor.getColumnIndex("date_to"))
-
-            );
-        }
-        db.close();
-        return null;
-    }
-
-    public ArrayList<Document> getCarServices() {
-        ArrayList<Document> array_list = new ArrayList<>();
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from service", null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                array_list.add(new Document(
-                        cursor.getString(cursor.getColumnIndex("car")),
-                        cursor.getString(cursor.getColumnIndex("reg_nr")),
-                        cursor.getString(cursor.getColumnIndex("mileage")),
-                        cursor.getString(cursor.getColumnIndex("date_from")),
-                        cursor.getString(cursor.getColumnIndex("date_to"))
-                ));
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
-        return array_list;
-    }
-
-    public void updateCarService(int id, Document document) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("reg_nr", document.getInfo());
-        contentValues.put("mileage", document.getAdditionalInfo());
-        contentValues.put("date_from", document.getDate());
-        contentValues.put("date_to", document.getExpiryDate());
-        db.update(CAR_SERVICE_TABLE, contentValues, "service_id = ?", new String[]{String.valueOf(id)});
-        db.close();
-    }
-
     public void deleteCar(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         db.delete(CARS_TABLE_NAME, "id=?", new String[]{Integer.toString(id)});
@@ -470,5 +371,4 @@ public class DBHelper extends SQLiteOpenHelper {
         db.delete(PARTS_TABLE_NAME, "part_id=?", new String[]{Integer.toString(id)});
         db.close();
     }
-
 }

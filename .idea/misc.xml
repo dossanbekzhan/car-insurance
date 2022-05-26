@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Bekzhan/StudioProjects/car-insurance/app/src/main/res/drawable/green_box_shadow_border.xml" value="0.2015" />
+        <entry key="..\:/Users/Bekzhan/StudioProjects/car-insurance/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Bekzhan/StudioProjects/car-insurance/app/src/main/res/layout/dialog_add_car.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/green_box_shadow_border.xml" value="0.1225" />
         <entry key="app/src/main/res/drawable/ic_baseline_security_24.xml" value="0.2235" />
         <entry key="app/src/main/res/drawable/ic_menu_camera.xml" value="0.1225" />
