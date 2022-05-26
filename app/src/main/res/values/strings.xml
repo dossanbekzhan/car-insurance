@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">Сақтандыру полисі</string>
+    <string name="navigation_drawer_open">Навигацияны ашу</string>
+    <string name="navigation_drawer_close">Навигацияны жабу</string>
+    <string name="nav_header_title">Сақтандыру полисі</string>
+    <string name="nav_header_subtitle">Бетбелгіні таңдаңыз</string>
+    <string name="nav_header_desc">Навигация тақырыбы</string>
+    <string name="action_settings">Баптау</string>
+    <string name="about_author">Біз жайлы</string>
+
+    <string name="menu_nav_home">Көлік деректері</string>
+    <string name="menu_nav_replacements">Көлік ауысымдары</string>
+    <string name="menu_nav_share">Қосымшамен бөлісу</string>
+    <string name="share">Бөлісу</string>
+    <string name="insurance">Сақтандыру</string>
+    <string name="car_service">Сақтандыру полисін рәсімдеу</string>
+
+    <string name="car_data_txt">Ауыстырылған бөлшектердің тізімі:</string>
+    <string name="car_specification">Автокөлік сипаттамасы:</string>
+    <string name="car_mark">Көлік маркасы</string>
+    <string name="auto_mark_hint">BMW</string>
+    <string name="car_model">Көлік моделі:</string>
+    <string name="auto_model_hint">X5</string>
+    <string name="car_year">Шығарылған жылы:</string>
+    <string name="car_year_hint">2001</string>
+    <string name="car_power">1.9</string>
+    <string name="km">KM:</string>
+    <string name="car_km_hint">90KM</string>
+    <string name="main_car">Негізгі көлік</string>
+    <string name="new_car">Жаңа жазба</string>
+    <string name="replacement_date">Ауыстыру күні</string>
+    <string name="part_price">Бөлшек бағасы</string>
+    <string name="part_price_hint">125</string>
+    <string name="additional_info">Қосымша ақпарат</string>
+
+    <string name="date_hint">%s</string>
+    <string name="part_date_adapter_placeholder">Ауыстыру күні: %s</string>
+    <string name="part_price_adapter_placeholder">Бөлшек бағасы: %szł</string>
+    <string name="domyslne_auto_tooltip_text">По умолчанию</string>
+    <string name="wybierz_auto">Көлік:</string>
+    <string name="nowa_czesc">Жаңа бөлшек:</string>
+    <string name="cena_czesci">Бөлшек бағасы:</string>
+    <string name="data_wymiany">Ауыстыру уақыты:</string>
+    <string name="additional_info_txt">Қосымша ақпарат:</string>
+    <string name="menu_nav_dokumenty">Сақтандыру полисі</string>
+    <string name="menu_nav_udostepnij_swoja_lokalizacje">Орынмен бөлісу</string>
+    <string name="policy_number">Сақтандыру полис нөмері:</string>
+    <string name="policy_hint">2019–815456181</string>
+    <string name="additional_info_hint" />
+    <string name="document_date_from_txt">Қай уақыттан бастап сақтандыру жүмыс істейді:</string>
+    <string name="document_date_to_txt">Сақтандыру жарамды болғанға дейін:</string>
+    <string name="car_registration_number">Тіркеу нөмірі</string>
+    <string name="registration_number">Тіркеу нөмірі:</string>
+    <string name="car_mileage">Сынақ кезінде автомобильдің жүрісі:</string>
+    <string name="car_service_date_from">Техникалық сараптама күні:</string>
+    <string name="car_service_date_to">Жарамды техникалық сараптама:</string>
+    <string name="marka">Марка:</string>
+    <string name="model">Моделі:</string>
+    <string name="car_year_new">Шығарылған жылы:</string>
+    <string name="power_of">Қозғалтқыштың сыйымдылығы:</string>
+    <string name="power_of_car">Ат күші:</string>
+    <string name="data_to_send_format">Марка: %s \nМоделі: %s \nЖылы: %s \nҚозғалтқыш сыйымдылығы: %s \nҚашықтық: %sKM</string>
+    <string name="set_as_default_car_hint">Default түрде біреуін таңдаңыз:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
